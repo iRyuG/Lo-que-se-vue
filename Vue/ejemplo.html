@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fundamentos de Vue</title>
+</head>
+<body>
+    <div id="app">
+        <h3>TWO WAY DATA-BINDING</h3>
+        <span>Hola {{ name }}</span><br>
+        <input type="text" v-model="name"><br>
+
+        <h3>CONTROL DE FLUJO</h3>
+        <template v-if="condicion">
+        <span v-show="condicion">v-show</span><br>
+        <p>v-if</p>
+        </template>
+        <p v-if="!condicion">Ahora no se ve</p>
+        <button @click="desaparecer">Desaparecer</button>
+        
+        <div>
+            <span v-for="objeto in objetos">{{ objeto.name }}</span>
+        </div>
+
+        <h3>FILTROS</h3>
+        <span>{{ filtro | lowercase }}</span><br>
+        <span>{{ filtro | uppercase }}</span><br>
+        <span>{{ filtro | capitalize }}</span><br>
+
+        <h3>MÉTODOS</h3>
+        <span>{{ contador }}</span>
+        <button @click="sumar">sumar</button>
+        <button @click="restar">restar</button>
+
+        <h3>FORMULARIOS</h3>
+        <form @submit.prevent="submit" action="" method="post">
+            <template v-for="curso in cursos">
+                <input type="checkbox" v-model="cursosSeleccionados" :id="curso.value" :value="curso.value">
+                <label :for="curso.value">{{ curso.nombre }}</label>
+            </template>
+            <button type="submit">Enviar</button>
+        </form>
+
+        <h3>COMPONENTES</h3>
+        <form @submit.prevent="submit" action="" method="post">
+            <template v-for="curso in cursos">
+                <curso @checked="selectCurso" :curso="curso"></curso>
+            </template>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="ejemplo.js"> </script>
+</body>
+</html>
